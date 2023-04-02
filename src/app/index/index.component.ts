@@ -20,18 +20,20 @@ cb2: any;
 cb3: any;
 cb4: any;
 
+
 constructor(private details:InputDetailsService){}
 
 passDetails(){
-  this.details.setFrom(this.fromPlace)
-  this.details.setTo(this.toPlace)
-  this.details.setDate(this.date)
-  this.details.setGeneral(this.general)
-  this.details.setClasses(this.classes)
-  this.details.setCb1(this.cb1)
-  this.details.setCb2(this.cb2)
-  this.details.setCb3(this.cb3)
-  this.details.setCb4(this.cb4)
+  this.details.setFrom(this.fromPlace);
+  this.details.setTo(this.toPlace);
+  this.details.setDate(this.date);
+  this.details.setGeneral(this.general);
+  this.details.setClasses(this.classes);
+  this.details.setCb1(this.cb1);
+  this.details.setCb2(this.cb2);
+  this.details.setCb3(this.cb3);
+  this.details.setCb4(this.cb4);
+
 }
 
 

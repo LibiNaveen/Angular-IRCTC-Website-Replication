@@ -2,18 +2,30 @@
 <div class="container">
     <h3 class="d-flex justify-content-center">LOGIN</h3>
 <div>
-<form class="form" onload="capGenerate()">
-    <input type="text" class="form-control mt-2" name="username" [(ngModel)]="formData.name"  placeholder="Username">
-    <input type="password" class="form-control"  name="password" [(ngModel)]="formData.password" placeholder="password">
+<form class="form" #login="ngForm" (onSubmit)="login">
+    <input type="text" class="form-control mt-2" name="username" [(ngModel)]="formData.name" #username="ngModel" placeholder="Username" required touched>
+    <div *ngIf="username.invalid && username.touched">
+        <small class="text-danger" *ngIf="username.errors?.['required']">*Username is Required</small>
+    </div>
+    <input type="password" class="form-control"  name="password" minlength="6" [(ngModel)]="formData.password" placeholder="password"  #password="ngModel" required>
+    <div *ngIf="password.invalid && password.touched">
+        <small class="text-danger" *ngIf="password.errors?.['required']">*Password is Required</small>
+        <small class="text-danger" *ngIf="password.errors?.['minlength']">*Minimum 6 characters Required</small>
+        
+    </div>
     <p class="mt-3">FORGET ACCOUNT DETAILS?</p>
-    <canvas id="captcha" width="200" height="100" x="50" y="50" style="border:1px solid #000000; color: blue;">
-        {{captcha}}</canvas>
-    <!-- <svg id="captcha" width="280px" height="100px" style="border:1px solid black">
+    <!-- <canvas id="captcha" width="200" height="100" x="50" y="50" style="border:1px solid #000000; color: blue;">
+        {{captcha}}</canvas> -->
+    <svg id="captcha" width="270px" height="100px" style="border:1px solid black">
         <text fill="#2F4676" font-size="40" font-family="Verdana" x="50" y="70">{{captcha}}</text>
-        </svg> -->
-    <p>{{captcha}}</p>
-        <input id="textBox" class="form-control" type="text" name="text" placeholder="Enter Captcha">
-        <p id="key"></p>
+    </svg>
+    <input id="textBox" class="form-control mt-1" type="text" (blur)="checkCaptcha()" name="text" #captchaText="ngModel" [(ngModel)]="formCaptcha" placeholder="Enter Captcha" touched>
+        <div *ngIf="captchaText.touched">
+            <small class="text-danger" *ngIf="isCaptcha == false">captcha is not matched</small>
+        </div>
+        {{captcha}}
+        {{formCaptcha}}
+        
     <input class="input-check font-size-small" type="checkbox"> 
         <label class="input-label">  Login & Booking with OTP</label> <br>
     <button class="btn my-2 " id="signIn" type="submit" (click)="onSubmit()">SIGN IN</button>

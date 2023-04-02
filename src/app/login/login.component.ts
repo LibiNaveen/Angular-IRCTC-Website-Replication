@@ -11,19 +11,19 @@ export class LoginComponent {
   formData = { name: '', password: '' };
   errorMessage = '';
   captcha: any;
+  formCaptcha ="";
+  isCaptcha = true;
 
 
   constructor(private auth: AuthServiceService) {}
 
   ngOnInit() {
-    console.log(this.captcha);
-    console.log("hai");
     this.capGenerate()
-    console.log(this.captcha);
 }
 
+
   capGenerate(){
-    console.log("hello")
+   
     // let c = document.getElementById("myCanvas");
    
     // let ctx = (c as HTMLCanvasElement).getContext("2d");
@@ -42,8 +42,6 @@ export class LoginComponent {
 
 
   onSubmit() {
-    console.log(this.auth.users);
-    console.log(this.formData)
     let userId = this.auth.login(this.formData.name, this.formData.password);
     if (!userId) {
       this.errorMessage = 'InValid Account!';
@@ -53,6 +51,19 @@ export class LoginComponent {
       this.auth.canAccess();
     }
     console.log(userId)
+  }
+
+  checkCaptcha(){
+    this.captcha = this.captcha.trim();
+    this.formCaptcha = this.formCaptcha.trim();
+
+    if(this.captcha != this.formCaptcha){
+      this.isCaptcha = false;
+      console.log("hai")
+
+    }
+   
+
   }
 }
 

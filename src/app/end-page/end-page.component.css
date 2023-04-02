@@ -1,0 +1,23 @@
+#help h2{
+    padding-left: 450px;
+    }
+    #book  button {
+      border-radius: 200px ; 
+      color: blueviolet;
+      }
+      #book button:hover{
+        background-color: aqua;
+      }
+      #book{
+        padding-left: 500px;
+    }
+    #look h1{
+        padding-left: 450px;
+    }
+    #cancel h1{
+        padding-left: 450px;
+        color: aqua;
+    }
+    #syco h2{
+        padding-left: 450px;
+    }

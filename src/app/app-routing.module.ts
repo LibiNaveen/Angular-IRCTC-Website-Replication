@@ -9,6 +9,8 @@ import { RegisterBasicComponent } from './register-basic/register-basic.componen
 import { RegisterPersonalComponent } from './register-personal/register-personal.component';
 import { RegisterComponent } from './register/register.component';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { EndPageComponent } from './end-page/end-page.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
@@ -20,6 +22,11 @@ const routes: Routes = [
   { path: 'personal', component: RegisterPersonalComponent },
   { path: 'passDetail', component: PassengerdetailsComponent },
   { path: 'payment', component:PaymentPageComponent  },
+  { path: 'contact', component:ContactUsComponent  },
+  { path: 'end', component:EndPageComponent  },
+
+
+
 
 
 

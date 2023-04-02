@@ -12,18 +12,21 @@
                 <div class="col-sm-5"><h2 class="text-center">BOOK TICKET</h2></div>
                 <div class="col-sm-4" id="image2"> <img class="pt-2" src="../../assets/images/G20_Logo.png" alt="logo"> </div>
             </div> 
-        <form #travelDetails="ngForm" (onSubmit)="travelDetails">    
+        <form #travelDetails="ngForm" (ngSubmit)="travelDetails.form.valid&&passDetails()" novalidate>    
         <div class="container row">
         <div class="col-md-6 pt-3">
             <div class="form-floating my-3">
                 <i class="fa-sharp fa-solid fa-location-arrow fa-lg"></i>
-                <input class="form-control" type="text" id="from" [(ngModel)]="fromPlace"  name = "from" placeholder="From">
+                <input class="form-control" type="text"  id="from" [(ngModel)]="fromPlace"  name = "from" placeholder="From" #from ="ngModel" required >
                 <label for="floatingName">From</label>
+                <small class="text-danger" *ngIf="from.errors?.['required']" >*From place is required</small>
             </div>
             <div class="form-floating">
                 <i class="fa-solid fa-location-dot fa-lg"></i>
-                <input class="form-control" type="text" id="to" placeholder="To"  [(ngModel)]="toPlace" name = "to" >
+                <input class="form-control" type="text" id="to" placeholder="To"  [(ngModel)]="toPlace" name = "to" #to ="ngModel" required  >
                 <label for="floatingName">To</label>
+                <small class="text-danger" *ngIf="from.errors?.['required']" >*From place is required</small>
+
             </div>
             <select class="form-select my-3" [(ngModel)]="general" style="font-size: small;" id="select1" name = "general">
                 <i class="fa-solid fa-grid-2 fa-lg"></i>
@@ -34,14 +37,17 @@
                 <option value="4">TATKAL</option>
                 <option value="5">PREMIUM TATKAL</option>
               </select>
+             
+
         </div>
         <div class="col-md-6 mt-3 pt-3">
             <div class="form-floating" id="date">
                 <i class="fa-regular fa-calendar-days fa-lg"></i>
-                <input class="form-control" [(ngModel)]="date" type="date" id="dateAndTime" placeholder="DD/MM/YYYY"  name = "date">
+                <input class="form-control" [(ngModel)]="date" type="date" id="dateAndTime"  name = "date" required >
                 <label for="floatingName">DD/MM/YYYY</label>
+
             </div>
-            <select class="form-select my-3"  [(ngModel)]="classes" style="font-size: small;" id="select2" name = "classes">
+            <select class="form-select my-3"  [(ngModel)]="classes" style="font-size: small;" id="select2" name = "classes" >
                 <i class="fa-solid fa-briefcase fa-lg"></i>
                 <option selected>All Classes</option>
                 <option value="1">Anubhuti Class (EA)</option>
@@ -59,6 +65,7 @@
                 <option value="13">Second Sitting (2S) </option>
 
               </select>
+
         </div>
     </div>
 </form>
